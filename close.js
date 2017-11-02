@@ -1,3 +1,3 @@
 setTimeout(function () {
   window.close()
-}, 3400)
+}, 3100)

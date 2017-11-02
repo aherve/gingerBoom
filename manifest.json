@@ -1,16 +1,22 @@
 {
   "manifest_version": 2,
 
+  "author": "Aurélien Hervé",
   "name": "Ginger BOOM",
-  "description": "Have GingerGM shout \"BOOOOM\" in a single click",
+  "description": "Have GingerGM shout \"BOOOOM\" at your own games",
   "version": "1.0",
 
+  "icons": {
+    "16": "boom16.png",
+    "48": "boom48.png",
+    "128": "boom128.png",
+    "256": "boom256.png"
+  },
+
   "browser_action": {
-    "default_icon": "assets/boom.png",
+    "default_icon": "assets/boom256.png",
     "default_popup": "popup.html"
   },
   "permissions": [
-    "activeTab",
-    "storage"
   ]
 }
