@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+
+  "name": "Ginger BOOM",
+  "description": "Have GingerGM shout \"BOOOOM\" in a single click",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "assets/boom.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}
