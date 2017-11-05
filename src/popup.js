@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   getCurrentTabUrl((tab) => {
     chrome.tabs.sendMessage(tab.id, {
       action: 'play',
-      url: chrome.runtime.getURL('assets/boom.mp4')
+      url: chrome.runtime.getURL('assets/boom.ogv')
     }, () => {
       setTimeout(() => {window.close()})
     })

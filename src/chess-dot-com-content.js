@@ -63,10 +63,10 @@ function getMoves () {
 function youWin () {
   if (isCheckMate()) {
     //console.log("YOU WIN BY CHECKMATE")
-    play(chrome.runtime.getURL('assets/checkmate-motherfucker-long.mp4'))
+    play(chrome.runtime.getURL('assets/checkmate-motherfucker-long.ogv'))
   } else {
     //console.log("YOU WIN")
-    //play(chrome.runtime.getURL('assets/boom.mp4'))
+    //play(chrome.runtime.getURL('assets/boom.ogv'))
   }
 }
 

@@ -1,3 +1,5 @@
+let hackCounter = 0
+
 function play (videoSrc) {
 
   const video = document.createElement("video");
@@ -12,15 +14,16 @@ function play (videoSrc) {
   const source = document.createElement("source")
 
   const type = document.createAttribute('type')
-  type.value = 'video/mp4'
+  type.value = 'video/ogg'
 
   const src = document.createAttribute('src')
-  src.value = videoSrc
+  src.value = videoSrc + `?v-${hackCounter++}`
 
   source.setAttributeNode(type)
   source.setAttributeNode(src)
 
   video.appendChild(source);
+
   video.addEventListener('ended', () => fadeOut(video))
 
   const body = document.body;

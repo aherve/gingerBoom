@@ -21,7 +21,7 @@
     },
     {
       "matches": ["*://www.chess.com/*"],
-      "js": ["src/chess-dot-com-content.js"],
+      "js": ["src/play.js", "src/chess-dot-com-content.js"],
       "css": ["src/content.css"]
     }
   ],
