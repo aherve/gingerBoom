@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     chrome.tabs.sendMessage(tab.id, {
       action: 'play',
       url: chrome.runtime.getURL('assets/boom.mp4')
-    }, () => {})
+    }, () => {
+      setTimeout(() => {window.close()})
+    })
   })
 })
 
@@ -18,6 +20,3 @@ function getCurrentTabUrl(cb) {
     cb(tabs[0]);
   });
 }
-
-// close the popup, as we don't need it
-setTimeout(() => {window.close()}, 0)

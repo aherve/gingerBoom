@@ -4,7 +4,7 @@
   "author": "Aurélien Hervé",
   "name": "Ginger BOOM",
   "description": "Have GingerGM shout \"BOOOOM\" at your own games",
-  "version": "1.1.1",
+  "version": "1.2.1",
 
   "icons": {
     "16": "assets/boom16.png",
@@ -16,7 +16,12 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["src/content.js"],
+      "js": ["src/play.js", "src/content.js"],
+      "css": ["src/content.css"]
+    },
+    {
+      "matches": ["*://www.chess.com/*"],
+      "js": ["src/chess-dot-com-content.js"],
       "css": ["src/content.css"]
     }
   ],
