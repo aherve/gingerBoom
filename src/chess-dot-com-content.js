@@ -63,15 +63,10 @@ function getMoves () {
 function youWin () {
   if (isCheckMate()) {
     //console.log("YOU WIN BY CHECKMATE")
-    setTimeout(() => {
-      play(chrome.runtime.getURL('assets/checkmate.ogv'))
-    }, 1000)
+    play(chrome.runtime.getURL('assets/checkmate.ogv'))
   } else {
     //console.log("YOU WIN")
-    //play(chrome.runtime.getURL('assets/boom.ogv'))
-    setTimeout(() => {
-      play(chrome.runtime.getURL('assets/boom.ogv'))
-    }, 1000)
+    play(chrome.runtime.getURL('assets/boom.ogv'))
   }
 }
 
@@ -81,9 +76,6 @@ function youLoose () {
   } else {
     //console.log("YOU LOOSE")
   }
-    setTimeout(() => {
-      play(chrome.runtime.getURL('assets/checkmate.ogv'))
-    }, 1000)
 }
 
 function isCheckMate() {

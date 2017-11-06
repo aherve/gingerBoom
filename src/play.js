@@ -1,5 +1,3 @@
-let hackCounter = 0
-
 function play (videoSrc) {
 
   const ifr = document.createElement('iframe')
@@ -21,7 +19,6 @@ function play (videoSrc) {
     z-index: 1100;
   `
 
-  //video.setAttributeNode(style)
   ifr.setAttributeNode(style)
   video.setAttributeNode(autoplay)
 
@@ -31,7 +28,7 @@ function play (videoSrc) {
   type.value = 'video/ogg'
 
   const src = document.createAttribute('src')
-  src.value = videoSrc + `?v-${hackCounter++}`
+  src.value = videoSrc + `?v${new Date().getTime()}`
 
   source.setAttributeNode(type)
   source.setAttributeNode(src)
@@ -39,20 +36,16 @@ function play (videoSrc) {
   video.appendChild(source);
 
   video.addEventListener('ended', () => fadeOut(ifr))
-  // close after 4s whatever happens
-  //setTimeout(() => fadeOut(video), 4000)
 
   const body = document.body;
-  //body.prepend(video)
   body.prepend(ifr)
   ifr.contentDocument.querySelector('body').prepend(video)
 }
 
-function fadeOut(videoNode) {
-  if (!videoNode) {return}
-  videoNode.style.opacity = 0;
+function fadeOut(node) {
+  if (!node) {return}
+  node.style.opacity = 0;
   setTimeout(() => {
-    //videoNode.pause();
-    videoNode.remove()
+    node.remove()
   }, 300)
 }
