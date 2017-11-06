@@ -81,6 +81,9 @@ function youLoose () {
   } else {
     //console.log("YOU LOOSE")
   }
+    setTimeout(() => {
+      play(chrome.runtime.getURL('assets/checkmate.ogv'))
+    }, 1000)
 }
 
 function isCheckMate() {
