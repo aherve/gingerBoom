@@ -1,3 +1,13 @@
+const WIN_VIDEOS = [
+  'assets/boom.ogv',
+  'assets/inYourPipe.ogv',
+  'assets/inYourPipe2.ogv',
+].map(src => chrome.runtime.getURL(src))
+
+const CHECKMATE_VIDEOS = [
+  'assets/checkmate.ogv'
+].map(src => chrome.runtime.getURL(src))
+
 loopUntilInit()
 
 function loopUntilInit () {
@@ -62,11 +72,9 @@ function getMoves () {
 
 function youWin () {
   if (isCheckMate()) {
-    //console.log("YOU WIN BY CHECKMATE")
-    play(chrome.runtime.getURL('assets/checkmate.ogv'))
+    play(sample(CHECKMATE_VIDEOS))
   } else {
-    //console.log("YOU WIN")
-    play(chrome.runtime.getURL('assets/boom.ogv'))
+    play(sample(WIN_VIDEOS))
   }
 }
 
@@ -80,4 +88,10 @@ function youLoose () {
 
 function isCheckMate() {
   return getMoves().some(move => move[move.length - 1] === '#')
+}
+
+function sample (array) {
+  return array[
+    Math.floor( array.length * Math.random() )
+  ]
 }

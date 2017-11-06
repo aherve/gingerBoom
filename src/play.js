@@ -10,6 +10,8 @@ function play (videoSrc) {
   const video = document.createElement("video");
   video.classList.add('boom-button')
   video.classList.add('clearfix')
+  video.height = ifr.height
+  video.width = ifr.width
   const autoplay = document.createAttribute('autoplay')
   const style = document.createAttribute('style')
   style.value = `
