@@ -11,7 +11,7 @@ const CHECKMATE_VIDEOS = [
 loopUntilInit()
 
 function loopUntilInit () {
-  const target = document.querySelector('#moveList_')
+  const target = document.querySelector('.move-list-container')
   if (!target) {
     setTimeout(() => {
       loopUntilInit()
@@ -63,7 +63,7 @@ function hasLost() {
 }
 
 function areYouWhite () {
-  return document.querySelector('.player-info.bottom').querySelector('.captured-pieces').id.includes("whiteScoreDivContainer_")
+  return !!document.querySelector('.board-player.bottom.white')
 }
 
 function getMoves () {
