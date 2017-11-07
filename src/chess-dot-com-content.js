@@ -11,7 +11,7 @@ const CHECKMATE_VIDEOS = [
 loopUntilInit()
 
 function loopUntilInit () {
-  const target = document.querySelector('.move-list-container')
+  const target = document.querySelector('.move-list-container') || document.querySelector('#moveList_')
   if (!target) {
     setTimeout(() => {
       loopUntilInit()
@@ -63,7 +63,12 @@ function hasLost() {
 }
 
 function areYouWhite () {
-  return !!document.querySelector('.board-player.bottom.white')
+  // chess.com beta selector
+  if ( !!document.querySelector('.board-player.bottom.white')) { return true }
+  if ( !!document.querySelector('.board-player.bottom.black')) { return false }
+
+  // 'old' version:
+  return document.querySelector('.player-info.bottom').querySelector('.captured-pieces').id.includes("whiteScoreDivContainer_")
 }
 
 function getMoves () {
