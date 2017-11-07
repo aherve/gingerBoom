@@ -72,9 +72,13 @@ function getMoves () {
 
 function youWin () {
   if (isCheckMate()) {
-    play(sample(CHECKMATE_VIDEOS))
+    setTimeout(() => {
+      play(sample(CHECKMATE_VIDEOS))
+    }, 400)
   } else {
-    play(sample(WIN_VIDEOS))
+    setTimeout(() => {
+      play(sample(WIN_VIDEOS))
+    }, 400)
   }
 }
 
