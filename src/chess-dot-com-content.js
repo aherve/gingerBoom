@@ -79,10 +79,12 @@ function youWin () {
   if (isCheckMate()) {
     setTimeout(() => {
       play(sample(CHECKMATE_VIDEOS))
+      trackEvent('autoWin', 'checkmate')
     }, 400)
   } else {
     setTimeout(() => {
       play(sample(WIN_VIDEOS))
+      trackEvent('autoWin', 'youWin')
     }, 400)
   }
 }
