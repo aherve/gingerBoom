@@ -4,7 +4,7 @@
   "author": "Aurélien Hervé",
   "name": "Ginger BOOM",
   "description": "Have GingerGM shout \"BOOOOM\" at your own games",
-  "version": "1.5.4",
+  "version": "1.6.0",
 
   "icons": {
     "16": "assets/boom16.png",
@@ -12,6 +12,8 @@
     "128": "assets/boom128.png",
     "256": "assets/boom256.png"
   },
+
+  "options_page": "src/options.html",
 
   "content_scripts": [
     {
@@ -40,6 +42,7 @@
     "default_title": "BOOM !"
   },
   "permissions": [
+    "storage",
     "activeTab"
   ],
   "web_accessible_resources": [

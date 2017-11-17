@@ -1,14 +1,31 @@
-const WIN_VIDEOS = [
-  'assets/boom.ogv',
-  'assets/inYourPipe.ogv',
-  'assets/inYourPipe2.ogv',
-].map(src => chrome.runtime.getURL(src))
+const WIN_VIDEOS = []
+const CHECKMATE_VIDEOS = []
 
-const CHECKMATE_VIDEOS = [
-  'assets/checkmate.ogv'
-].map(src => chrome.runtime.getURL(src))
+chrome.storage.sync.get({
+  autowin: true,
+  noSwearing: false,
+}, settings => {
+  // nothing to run for disabled autowin
+  if (!settings.autowin) { return }
+  WIN_VIDEOS.push(
+    ...[
+      'assets/boom.ogv',
+      'assets/inYourPipe.ogv',
+      'assets/inYourPipe2.ogv',
+    ].map(src => chrome.runtime.getURL(src))
+  )
 
-loopUntilInit()
+  if (settings.noSwearing) {
+    CHECKMATE_VIDEOS.push(...WIN_VIDEOS)
+  } else {
+    CHECKMATE_VIDEOS.push(
+      ...[
+        'assets/checkmate.ogv',
+      ].map(src => chrome.runtime.getURL(src))
+    )
+  }
+  loopUntilInit()
+})
 
 function loopUntilInit () {
   const target = document.querySelector('.move-list-container') || document.querySelector('#moveList_')
@@ -77,15 +94,19 @@ function getMoves () {
 
 function youWin () {
   if (isCheckMate()) {
-    setTimeout(() => {
-      play(sample(CHECKMATE_VIDEOS))
-      trackEvent('autoWin', 'checkmate')
-    }, 400)
+    if (CHECKMATE_VIDEOS.length) {
+      setTimeout(() => {
+        play(sample(CHECKMATE_VIDEOS))
+        trackEvent('autoWin', 'checkmate')
+      }, 400)
+    }
   } else {
-    setTimeout(() => {
-      play(sample(WIN_VIDEOS))
-      trackEvent('autoWin', 'youWin')
-    }, 400)
+    if (WIN_VIDEOS.length) {
+      setTimeout(() => {
+        play(sample(WIN_VIDEOS))
+        trackEvent('autoWin', 'youWin')
+      }, 400)
+    }
   }
 }
 
