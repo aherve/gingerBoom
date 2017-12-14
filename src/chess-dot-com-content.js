@@ -1,5 +1,7 @@
 const WIN_VIDEOS = []
 const CHECKMATE_VIDEOS = []
+const LOOSE_VIDEOS = []
+const CHECKMATE_LOOSE_VIDEOS = []
 
 chrome.storage.sync.get({
   autowin: true,
@@ -15,15 +17,30 @@ chrome.storage.sync.get({
     ].map(src => chrome.runtime.getURL(src))
   )
 
+  LOOSE_VIDEOS.push(
+    ...[
+      'assets/bollocks.ogv'
+    ].map(src => chrome.runtime.getURL(src))
+  )
+
   if (settings.noSwearing) {
     CHECKMATE_VIDEOS.push(...WIN_VIDEOS)
+    CHECKMATE_LOOSE_VIDEOS.push(...LOOSE_VIDEOS)
   } else {
+
     CHECKMATE_VIDEOS.push(
       ...[
         'assets/checkmate.ogv',
       ].map(src => chrome.runtime.getURL(src))
     )
+
+    CHECKMATE_LOOSE_VIDEOS.push(
+      ...[
+        'assets/howDidHeDoThat.ogv',
+      ].map(src => chrome.runtime.getURL(src))
+    )
   }
+
   loopUntilInit()
 })
 
@@ -112,9 +129,19 @@ function youWin () {
 
 function youLoose () {
   if (isCheckMate()) {
-    //console.log("YOU LOOSE BY CHECKMATE")
+    if (CHECKMATE_LOOSE_VIDEOS.length) {
+      setTimeout(() => {
+        play(sample(CHECKMATE_LOOSE_VIDEOS))
+        trackEvent('autoLoose', 'checkmate')
+      }, 400)
+    }
   } else {
-    //console.log("YOU LOOSE")
+    if (LOOSE_VIDEOS.length) {
+      setTimeout(() => {
+        play(sample(LOOSE_VIDEOS))
+        trackEvent('autoLoose', 'youLoose')
+      }, 400)
+    }
   }
 }
 
